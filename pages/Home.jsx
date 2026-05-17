@@ -1,3 +1,4 @@
+import Footer from "../src/components/Footer";
 import { useState, useEffect } from "react";
 import { FaRegCalendarAlt, FaSearch, FaUserCircle } from "react-icons/fa";
 import Calender from "./Calender";
@@ -503,98 +504,7 @@ function Home() {
           <br />
           <br />
           {/* Footer */}
-          <footer className="bg-[#424593] text-white pt-8 pb-4 px-4 md:px-0">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between md:items-start gap-8">
-              {/* Logo and Subscribe */}
-              <div className="flex flex-col items-center md:items-start md:w-1/4 mb-8 md:mb-0">
-                <div className="flex flex-col sm:flex-row items-center md:items-start mb-6">
-                  <img
-                    src="/Logo-VIT.png"
-                    alt="VIT Logo"
-                    className="h-16 sm:h-20 mr-0 sm:mr-3 mb-2 sm:mb-0"
-                  />
-                </div>
-                <form className="flex w-full max-w-xs mt-2">
-                  <input
-                    type="email"
-                    placeholder="Enter email..."
-                    className="rounded-l-md px-4 py-2 w-full text-gray-800 focus:outline-none"
-                    style={{ backgroundColor: "white" }}
-                  />
-                  <button
-                    type="submit"
-                    className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 rounded-r-md font-semibold"
-                  >
-                    Submit
-                  </button>
-                </form>
-              </div>
-              {/* Contact Us */}
-              <div className="md:w-1/4 mb-8 md:mb-0">
-                <h3 className="font-bold text-lg sm:text-xl mb-4">
-                  Contact Us
-                </h3>
-                <ul className="space-y-2 text-base">
-                  <li>
-                    <span className="mr-2">
-                      <i class="fa-solid fa-graduation-cap"></i>
-                    </span>
-                    Vidyalankar Institute of Technology,
-                    <br />
-                    Vidyalankar College Marg, Wadala(E),
-                    <br />
-                    Mumbai-400 037
-                  </li>
-                  <li>
-                    <span className="mr-2">
-                      <i class="fa-solid fa-phone"></i>
-                    </span>
-                    +91 22 2416 11 40
-                  </li>
-                  <li>
-                    <span className="mr-2">
-                      <i class="fa-solid fa-envelope"></i>
-                    </span>
-                    Write to Us
-                  </li>
-                  <li>
-                    <span className="mr-2">
-                      <i class="fa-solid fa-location-dot"></i>
-                    </span>
-                    Get Directions
-                  </li>
-                </ul>
-              </div>
-              {/* Academics */}
-              <div className="md:w-1/4 mb-8 md:mb-0">
-                <h3 className="font-bold text-lg sm:text-xl mb-4">Academics</h3>
-                <ul className="space-y-2 text-base">
-                  <li>• Information Technology</li>
-                  <li>• Computer Engineering</li>
-                  <li>• Electronics and Computer Science</li>
-                  <li>• Electronics and Telecommunication Engineering</li>
-                  <li>• Biomedical Engineering</li>
-                  <li>• Management Studies</li>
-                </ul>
-              </div>
-              {/* Website */}
-              <div className="md:w-1/4">
-                <h3 className="font-bold text-lg sm:text-xl mb-4">Website</h3>
-                <ul className="space-y-2 text-base">
-                  <li>• Home</li>
-                  <li>• Who We are</li>
-                  <li>• Contact Us</li>
-                  <li>• Terms & Conditions</li>
-                  <li>• Privacy Policy</li>
-                  <li>• R&amp;D</li>
-                </ul>
-              </div>
-            </div>
-            <hr className="my-6 border-blue-200" />
-            <div className="text-center text-base">
-              © 2025 All Rights Reserved.
-            </div>
-          </footer>
+          <Footer />
         </div>
       </div>
     </>

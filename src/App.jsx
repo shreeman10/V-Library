@@ -14,7 +14,7 @@ import Magazines from "../pages/Magazines";
 import Dictionaries from "../pages/Dictionaries";
 import Reserves from "../pages/Reserves";
 import SearchBooks from "../pages/SearchBooks";
-//Other imports... from folders
+import AIAssistant from "./components/AIAssistant";
 
 function App() {
   return(
@@ -34,9 +34,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>} ></Route>
           <Route path="/librarian" element={<LibrarianPage/>} ></Route>
           <Route path="/confirm" element={<Confirmation/>} ></Route>
-          <Route path="/select" element={<SelectPage />} />
         </Routes>
       </Router>
+      <AIAssistant />
     </>
   )
 }
