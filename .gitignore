@@ -31,3 +31,6 @@ backend/*.js
 !backend/init_db.js
 !backend/db/*.js
 !backend/routes/*.js
+
+# Credentials
+passwords.json

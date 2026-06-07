@@ -2,11 +2,7 @@ import Footer from "../src/components/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Dummy credentials
-const CREDENTIALS = {
-  user:  { username: "dummy", password: "dummy",  role: "user",  displayName: "User" },
-  admin: { username: "dummy", password: "abcde",  role: "admin", displayName: "Admin" },
-};
+import CREDENTIALS from "../passwords.json";
 
 function Login() {
   const navigate = useNavigate();
