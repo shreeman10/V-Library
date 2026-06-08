@@ -1,4 +1,5 @@
 import Footer from "../src/components/Footer";
+import Navbar from "../src/components/Navbar";
 import { useState, useEffect } from "react";
 import { FaSearch, FaHeart } from "react-icons/fa";
 
@@ -403,106 +404,75 @@ function SearchBooks() {
   return (
     <div className="outer-div bg-[#DFEDF5] min-h-screen flex flex-col">
       {/* Sticky Navbar */}
-      <div className="navbar bg-[#424593] px-4 md:px-8 flex items-center sticky top-0 z-50 w-full">
-        <div className="logo pr-4 md:pr-8 py-2 flex-shrink-0">
-          <img src="/Logo-VIT.png" alt="VIT Logo" className="h-15 w-auto" />
-        </div>
-        {/* Desktop Menu */}
-        <div className="hidden md:flex flex-1 items-center gap-x-8">
-          <a href="/dashboard" className="text-white hover:text-blue-500 text-lg">
-            <u>Dashboard</u>
-          </a>
-          <a href="/books" className="text-white hover:text-blue-500 text-lg">
-            <u>Books</u>
-          </a>
-          <a href="/journals" className="text-white hover:text-blue-500 text-lg">
-            <u>Journals</u>
-          </a>
-          <a href="/guides" className="text-white hover:text-blue-500 text-lg">
-            <u>Guides</u>
-          </a>
-          <a href="/magazines" className="text-white hover:text-blue-500 text-lg">
-            <u>Magazines</u>
-          </a>
-          <a href="/dictionaries" className="text-white hover:text-blue-500 text-lg">
-            <u>Dictionaries</u>
-          </a>
-          <a href="/search-books" className="text-white hover:text-blue-500 text-lg">
-            <u>Search Books</u>
-          </a>
-          <a href="/reserves" className="text-white hover:text-blue-500 text-lg">
-            <u>Reserves</u>
-          </a>
-        </div>
-        {/* Desktop Search, Wishlist & Login */}
-        <div className="hidden md:flex items-center ml-auto">
-          <FaSearch className="text-white text-lg mr-4" />
-          <div className="h-8 w-px bg-white mx-2"></div>
-          <div 
-            className="relative mr-4 cursor-pointer"
-            onClick={() => setShowWishlist(!showWishlist)}
-          >
-            <FaHeart className={`text-white text-lg ${wishlist.length > 0 ? 'text-red-500' : ''}`} />
-            {wishlist.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
-                {wishlist.length}
-              </span>
-            )}
-          </div>
-          {showWishlist && (
-            <div className="absolute top-full right-4 mt-2 bg-white rounded-lg shadow-xl w-80 max-h-96 overflow-y-auto z-50">
-              <div className="p-4 border-b">
-                <h3 className="font-semibold text-lg">My Wishlist</h3>
-              </div>
-              {wishlist.length === 0 ? (
-                <div className="p-8 text-center text-gray-500">
-                  Your wishlist is empty
-                </div>
-              ) : (
-                <div className="p-2">
-                  {wishlist.map((book) => (
-                    <div key={book.id} className="flex items-center gap-3 p-3 hover:bg-gray-100 rounded">
-                      <img src={book.cover} alt={book.title} className="w-16 h-20 object-cover" />
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-sm">{book.title}</h4>
-                        <p className="text-xs text-gray-600">{book.author}</p>
-                        <span className={`text-xs px-2 py-1 rounded ${
-                          book.availability === "Available" 
-                            ? "bg-green-100 text-green-700" 
-                            : "bg-red-100 text-red-700"
-                        }`}>
-                          {book.availability}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => toggleWishlist(book)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <FaHeart className="text-sm" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-          <div className="h-8 w-px bg-white mx-2"></div>
-          <div className="log-in py-2">
-            <a href="/login" className="text-white hover:text-blue-500 text-lg">
-              <u>Log in</u>
-            </a>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       {/* Main Content */}
       <div className="flex-1 p-4 md:p-8">
-        <h1
-          className="text-5xl md:text-7xl font-pacifico my-6 pl-[75px] pt-[30px]"
-          style={{ fontFamily: "Caveat", color: "#605fe6" }}
-        >
-          Search Books
-        </h1>
+        <div className="flex flex-col md:flex-row md:items-center justify-between my-6 pl-[75px] pt-[30px] pr-8 gap-4">
+          <h1
+            className="text-5xl md:text-7xl font-pacifico"
+            style={{ fontFamily: "Caveat", color: "#605fe6" }}
+          >
+            Search Books
+          </h1>
+          
+          <div className="relative">
+            <button
+              onClick={() => setShowWishlist(!showWishlist)}
+              className="bg-white border border-gray-200 hover:border-red-300 hover:shadow-md rounded-full px-5 py-2.5 flex items-center gap-2 shadow-sm transition-all duration-200"
+            >
+              <FaHeart className={wishlist.length > 0 ? 'text-red-500 animate-pulse' : 'text-gray-400'} />
+              <span className="text-sm font-semibold text-gray-700">My Wishlist</span>
+              {wishlist.length > 0 && (
+                <span className="bg-red-500 text-white rounded-full w-5 h-5 text-xs font-bold flex items-center justify-center">
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
+            
+            {showWishlist && (
+              <div className="absolute right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-100 w-80 max-h-96 overflow-y-auto z-40 animate-[fadeSlide_0.2s_ease]">
+                <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50 rounded-t-xl">
+                  <h3 className="font-bold text-gray-800">My Wishlist</h3>
+                  <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">
+                    {wishlist.length} Items
+                  </span>
+                </div>
+                {wishlist.length === 0 ? (
+                  <div className="p-8 text-center text-gray-500">
+                    <FaHeart className="text-gray-200 text-4xl mx-auto mb-2" />
+                    Your wishlist is empty
+                  </div>
+                ) : (
+                  <div className="p-2 divide-y divide-gray-50">
+                    {wishlist.map((book) => (
+                      <div key={book.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                        <img src={book.cover} alt={book.title} className="w-12 h-16 object-cover rounded shadow-sm" />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-sm text-gray-800 truncate">{book.title}</h4>
+                          <p className="text-xs text-gray-500 truncate">{book.author}</p>
+                          <span className={`inline-block text-[10px] px-2 py-0.5 rounded-full mt-1 font-semibold ${
+                            book.availability === "Available" 
+                              ? "bg-green-50 text-green-700 border border-green-100" 
+                              : "bg-red-50 text-red-700 border border-red-100"
+                          }`}>
+                            {book.availability}
+                          </span>
+                        </div>
+                        <button
+                          onClick={() => toggleWishlist(book)}
+                          className="text-gray-400 hover:text-red-500 p-1 transition-colors"
+                        >
+                          <FaHeart className="text-red-500 text-sm" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Search Box */}
         <div className="max-w-6xl mx-auto mb-8">

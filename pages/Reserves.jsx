@@ -1,4 +1,5 @@
 import Footer from "../src/components/Footer";
+import Navbar from "../src/components/Navbar";
 import { useState, useEffect } from "react";
 
 // --- Custom SVG Icons (to replace react-icons/fa) ---
@@ -11,7 +12,6 @@ const SearchIcon = (props) => (
 // --- End SVG Icons ---
 
 function Reserves() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [dbReserves, setDbReserves] = useState([]);
 
@@ -73,50 +73,7 @@ function Reserves() {
   return (
     <div className="min-h-screen bg-[#F5F9FF] flex flex-col">
       {/* Navbar */}
-      <div className="navbar bg-[#424593] px-4 md:px-8 flex items-center sticky top-0 z-50 w-full shadow-lg">
-        <div className="logo pr-4 md:pr-8 py-2 flex-shrink-0">
-          <img src="/Logo-VIT.png" alt="VIT Logo" className="h-15 w-auto" />
-        </div>
-        <div className="hidden md:flex flex-1 items-center gap-x-8">
-          <a href="/dashboard" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Dashboard</u></a>
-          <a href="/books" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Books</u></a>
-          <a href="/journals" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Journals</u></a>
-          <a href="/guides" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Guides</u></a>
-          <a href="/magazines" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Magazines</u></a>
-          <a href="/dictionaries" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Dictionaries</u></a>
-          <a href="/search-books" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Search Books</u></a>
-          <a href="/reserves" className="text-white font-bold text-xl transition duration-150"><u>Reserves</u></a> {/* Highlighted current page */}
-        </div>
-        <div className="hidden md:flex items-center ml-auto">
-          <SearchIcon className="text-white text-lg mr-4 h-5 w-5" />
-          <div className="h-8 w-px bg-white mx-2"></div>
-          <a href="/login" className="text-white hover:text-blue-300 text-lg transition duration-150"><u>Log in</u></a>
-        </div>
-        <button
-          className="flex flex-col justify-center items-center md:hidden ml-auto h-10 w-10"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? "opacity-0" : ""}`}></span>
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#424593] w-full flex flex-col items-center z-40 sticky top-[70px] shadow-lg">
-          <a href="/dashboard" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Dashboard</u></a>
-          <a href="/books" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Books</u></a>
-          <a href="/journals" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Journals</u></a>
-          <a href="/guides" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Guides</u></a>
-          <a href="/magazines" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Magazines</u></a>
-          <a href="/dictionaries" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Dictionaries</u></a>
-          <a href="/search-books" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Search Books</u></a>
-          <a href="/reserves" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center border-b border-blue-200"><u>Reserves</u></a>
-          <a href="/login" className="text-white hover:text-blue-500 py-2 text-lg w-full text-center"><u>Log in</u></a>
-        </div>
-      )}
+      <Navbar />
 
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row gap-8 p-6 md:p-12 max-w-7xl mx-auto w-full">

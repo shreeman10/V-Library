@@ -9,10 +9,10 @@ function Navbar() {
   const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
 
-  // Read user from localStorage on mount + listen for storage changes
+  // Read user from sessionStorage on mount + listen for storage changes
   useEffect(() => {
     const load = () => {
-      const stored = localStorage.getItem('user');
+      const stored = sessionStorage.getItem('user');
       setUser(stored ? JSON.parse(stored) : null);
     };
     load();
@@ -37,7 +37,7 @@ function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     setUser(null);
     setDropdownOpen(false);
     navigate('/');
@@ -54,25 +54,27 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex flex-1 items-center gap-x-8">
-          <Link to="/dashboard" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Dashboard</u></Link>
-          <Link to="/books" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Books</u></Link>
-          <Link to="/journals" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Journals</u></Link>
-          <Link to="/guides" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Guides</u></Link>
-          <Link to="/magazines" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Magazines</u></Link>
-          <Link to="/dictionaries" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Dictionaries</u></Link>
-          <Link to="/search-books" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Search Books</u></Link>
-          <Link to="/reserves" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Reserves</u></Link>
-        </div>
+        {/* Desktop nav links (Only shown if logged in) */}
+        {user && (
+          <div className="hidden md:flex flex-1 items-center gap-x-8">
+            <Link to="/dashboard" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Dashboard</u></Link>
+            <Link to="/books" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Books</u></Link>
+            <Link to="/journals" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Journals</u></Link>
+            <Link to="/guides" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Guides</u></Link>
+            <Link to="/magazines" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Magazines</u></Link>
+            <Link to="/dictionaries" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Dictionaries</u></Link>
+            <Link to="/search-books" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Search Books</u></Link>
+            <Link to="/reserves" className="text-white hover:text-blue-300 text-lg transition-colors"><u>Reserves</u></Link>
+          </div>
+        )}
 
-        {/* Desktop right side */}
-        <div className="hidden md:flex items-center ml-auto gap-3">
-          <FaSearch className="text-white text-lg" />
-          <div className="h-8 w-px bg-white/40 mx-1" />
+        {/* Desktop right side (Only shown if logged in) */}
+        {user ? (
+          /* ── Logged-in dropdown ── */
+          <div className="hidden md:flex items-center ml-auto gap-3">
+            <FaSearch className="text-white text-lg" />
+            <div className="h-8 w-px bg-white/40 mx-1" />
 
-          {user ? (
-            /* ── Logged-in dropdown ── */
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen((v) => !v)}
@@ -147,24 +149,28 @@ function Navbar() {
                 </div>
               )}
             </div>
-          ) : (
-            /* ── Not logged in ── */
+          </div>
+        ) : (
+          /* ── Not logged in: show Log in link on both desktop and mobile ── */
+          <div className="ml-auto">
             <Link to="/login" className="text-white hover:text-blue-300 text-lg transition-colors">
               <u>Log in</u>
             </Link>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Hamburger (mobile) */}
-        <button
-          className="flex flex-col justify-center items-center md:hidden ml-auto h-10 w-10"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-        </button>
+        {/* Hamburger (mobile, only when logged in) */}
+        {user && (
+          <button
+            className="flex flex-col justify-center items-center md:hidden ml-auto h-10 w-10"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 mb-1 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+        )}
       </div>
 
       {/* Mobile menu */}

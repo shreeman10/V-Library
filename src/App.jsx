@@ -19,7 +19,7 @@ import AIAssistant from "./components/AIAssistant";
 
 // Guard: only admin role can pass through
 function AdminRoute({ children }) {
-  const stored = localStorage.getItem('user');
+  const stored = sessionStorage.getItem('user');
   const user = stored ? JSON.parse(stored) : null;
 
   if (!user) {

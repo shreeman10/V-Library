@@ -1,4 +1,5 @@
 import Footer from "../src/components/Footer";
+import Navbar from "../src/components/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // for navigation
 
@@ -22,27 +23,7 @@ function SelectPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-cyan-200 via-cyan-100 to-cyan-200 flex flex-col">
       {/* Navbar */}
-      <div className="navbar bg-[#424593] px-4 md:px-8 flex items-center sticky top-0 z-50 w-full">
-        <div className="logo pr-4 md:pr-8 py-2 flex-shrink-0">
-          <img src="/Logo-VIT.png" alt="VIT Logo" className="h-15 w-auto" />
-        </div>
-        <div className="hidden md:flex flex-1 items-center gap-x-8">
-          <a href="/dashboard" className="text-white hover:text-blue-500 text-lg"><u>Dashboard</u></a>
-          <a href="/books" className="text-white hover:text-blue-500 text-lg"><u>Books</u></a>
-          <a href="/journals" className="text-white hover:text-blue-500 text-lg"><u>Journals</u></a>
-          <a href="/guides" className="text-white hover:text-blue-500 text-lg"><u>Guides</u></a>
-          <a href="/magazines" className="text-white hover:text-blue-500 text-lg"><u>Magazines</u></a>
-          <a href="/dictionaries" className="text-white hover:text-blue-500 text-lg"><u>Dictionaries</u></a>
-          <a href="/search-books" className="text-white hover:text-blue-500 text-lg"><u>Search Books</u></a>
-          <a href="/reserves" className="text-white hover:text-blue-500 text-lg"><u>Reserves</u></a>
-        </div>
-        <div className="hidden md:flex items-center ml-auto">
-          <div className="h-8 w-px bg-white mx-2"></div>
-          <div className="log-in py-2">
-            <a href="#" className="text-white hover:text-blue-500 text-lg"><u>Log in</u></a>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       {/* // write your code here */}
       <div className="flex justify-center items-center flex-grow py-12">
