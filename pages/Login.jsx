@@ -1,6 +1,6 @@
 import Footer from "../src/components/Footer";
 import Navbar from "../src/components/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import CREDENTIALS from "../passwords.json";
@@ -11,6 +11,14 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [shaking, setShaking] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("user");
+    if (stored) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
 
   const triggerShake = () => {
     setShaking(true);
@@ -26,22 +34,28 @@ function Login() {
 
     // Check admin first, then user
     if (trimUser === CREDENTIALS.admin.username && trimPass === CREDENTIALS.admin.password) {
+      setLoggingIn(true);
       sessionStorage.setItem("user", JSON.stringify({
         displayName: CREDENTIALS.admin.displayName,
         role: CREDENTIALS.admin.role,
         username: CREDENTIALS.admin.username,
       }));
-      navigate("/");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1200);
       return;
     }
 
     if (trimUser === CREDENTIALS.user.username && trimPass === CREDENTIALS.user.password) {
+      setLoggingIn(true);
       sessionStorage.setItem("user", JSON.stringify({
         displayName: CREDENTIALS.user.displayName,
         role: CREDENTIALS.user.role,
         username: CREDENTIALS.user.username,
       }));
-      navigate("/");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1200);
       return;
     }
 
@@ -135,6 +149,21 @@ function Login() {
           40% { transform: translateX(8px); }
           60% { transform: translateX(-6px); }
           80% { transform: translateX(6px); }
+        }
+      `}</style>
+
+      {loggingIn && (
+        <div className="fixed inset-0 bg-[#424593]/85 backdrop-blur-md flex flex-col items-center justify-center z-[9999] animate-[fadeIn_0.2s_ease]">
+          <div className="w-16 h-16 border-4 border-amber-400 border-t-transparent rounded-full animate-spin mb-4" />
+          <h2 className="text-white text-2xl font-bold font-sans tracking-wider mb-2">Authenticating...</h2>
+          <p className="text-blue-200 text-sm animate-pulse">Establishing secure session</p>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       `}</style>
 

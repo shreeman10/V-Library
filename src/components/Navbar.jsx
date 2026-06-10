@@ -7,6 +7,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const dropdownRef = useRef(null);
 
   // Read user from sessionStorage on mount + listen for storage changes
@@ -37,10 +38,13 @@ function Navbar() {
   }, []);
 
   const handleLogout = () => {
+    setIsLoggingOut(true);
     sessionStorage.removeItem('user');
     setUser(null);
     setDropdownOpen(false);
-    navigate('/');
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1000);
   };
 
   const isAdmin = user?.role === 'admin';
@@ -241,10 +245,21 @@ function Navbar() {
         </div>
       )}
 
+      {isLoggingOut && (
+        <div className="fixed inset-0 bg-[#424593]/80 backdrop-blur-md flex flex-col items-center justify-center z-[9999] animate-[fadeIn_0.2s_ease]">
+          <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mb-4" />
+          <h2 className="text-white text-xl font-bold font-sans tracking-wide">Logging Out...</h2>
+        </div>
+      )}
+
       <style>{`
         @keyframes fadeSlide {
           from { opacity: 0; transform: translateY(-6px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       `}</style>
     </>

@@ -70,6 +70,18 @@ function Reserves() {
         .catch(console.error);
     }, []);
 
+  const displayReserves = dbReserves.length > 0 ? dbReserves : [
+    { course: "Computer Networks", item: "Reserved Slides (3-day loan)" },
+    { course: "Operating Systems", item: "E-book: Reference Copy (Digital Access)" },
+    { course: "Microprocessors Lab", item: "Lab Manual (2-hour loan)" },
+    { course: "Data Structures", item: "Textbook Chapter 5 (Photocopy - 2 hr)" },
+  ];
+
+  const filteredReserves = displayReserves.filter(r => 
+    r.course.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    r.item.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-[#F5F9FF] flex flex-col">
       {/* Navbar */}
@@ -124,7 +136,7 @@ function Reserves() {
                   </tr>
                 </thead>
                 <tbody>
-                  {PlaceholderReserves.map((reserve, idx) => (
+                  {filteredReserves.map((reserve, idx) => (
                     <tr key={idx} className="border-b hover:bg-gray-50 transition duration-100 text-sm text-gray-700">
                       <td className="p-3">{reserve.course}</td>
                       <td className="p-3 text-blue-700 hover:underline cursor-pointer">{reserve.item}</td>

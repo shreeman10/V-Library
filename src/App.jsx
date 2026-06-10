@@ -35,6 +35,19 @@ function AdminRoute({ children }) {
   return children;
 }
 
+// Guard: any logged-in user can pass through
+function ProtectedRoute({ children }) {
+  const stored = sessionStorage.getItem('user');
+  const user = stored ? JSON.parse(stored) : null;
+
+  if (!user) {
+    // Not logged in at all — redirect to login
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
 function App() {
   return(
     <>
@@ -43,15 +56,15 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/select" element={<SelectPage/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path="/books" element={<Books/>} />
-          <Route path="/journals" element={<Journals/>} />
-          <Route path="/guides" element={<Guides/>} />
-          <Route path="/magazines" element={<Magazines/>} />
-          <Route path="/dictionaries" element={<Dictionaries/>} />
-          <Route path="/search-books" element={<SearchBooks/>} />
-          <Route path="/reserves" element={<Reserves/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/confirm" element={<Confirmation/>} />
+          <Route path="/books" element={<ProtectedRoute><Books/></ProtectedRoute>} />
+          <Route path="/journals" element={<ProtectedRoute><Journals/></ProtectedRoute>} />
+          <Route path="/guides" element={<ProtectedRoute><Guides/></ProtectedRoute>} />
+          <Route path="/magazines" element={<ProtectedRoute><Magazines/></ProtectedRoute>} />
+          <Route path="/dictionaries" element={<ProtectedRoute><Dictionaries/></ProtectedRoute>} />
+          <Route path="/search-books" element={<ProtectedRoute><SearchBooks/></ProtectedRoute>} />
+          <Route path="/reserves" element={<ProtectedRoute><Reserves/></ProtectedRoute>} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
+          <Route path="/confirm" element={<ProtectedRoute><Confirmation/></ProtectedRoute>} />
           <Route path="/unauthorized" element={<Unauthorized/>} />
 
           {/* Protected — admin only */}
