@@ -1,6 +1,6 @@
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 
 function Confirmation() {
   const navigate = useNavigate();

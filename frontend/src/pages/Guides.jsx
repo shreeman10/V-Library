@@ -1,6 +1,6 @@
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 import { useState } from "react";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 
 // NOTE: External icon libraries (FaSearch, LuBookOpen, etc.) have been replaced 
 // with inline SVG for guaranteed compilation in this environment.

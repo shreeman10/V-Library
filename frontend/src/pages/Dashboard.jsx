@@ -1,7 +1,7 @@
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 import { FaSearch, FaPlusCircle, FaBell, FaBookOpen, FaExclamationCircle, FaHourglassHalf } from "react-icons/fa";
 
 // Simple toast notification component (Copied from SearchBooks logic)

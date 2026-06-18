@@ -1,7 +1,7 @@
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 
 function Magazines() {
   const [menuOpen, setMenuOpen] = useState(false);

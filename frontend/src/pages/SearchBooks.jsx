@@ -1,5 +1,5 @@
-import Footer from "../src/components/Footer";
-import Navbar from "../src/components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import { FaSearch, FaHeart } from "react-icons/fa";
 

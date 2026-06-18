@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 
 function LibrarianPage() {
   const [activeTab, setActiveTab] = useState("books");

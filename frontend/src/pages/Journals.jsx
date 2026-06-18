@@ -1,7 +1,7 @@
-import Footer from "../src/components/Footer";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { FaRegCalendarAlt, FaSearch } from "react-icons/fa";
-import Navbar from "../src/components/Navbar";
+import Navbar from "../components/Navbar";
 
 function Journals() {
   const [menuOpen, setMenuOpen] = useState(false);

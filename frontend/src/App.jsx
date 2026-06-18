@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../pages/Home";
-import SelectPage from "../pages/SelectPage";
-import Login from "../pages/Login";
-import Books from "../pages/Books";
-import Journals from "../pages/Journals";
-import Guides from "../pages/Guides";
-import Dashboard from "../pages/Dashboard";
-import LibrarianPage from "../pages/LibrarianPage";
-import Confirmation from "../pages/ConfirmPage";
-import Unauthorized from "../pages/Unauthorized";
+import Home from "./pages/Home";
+import SelectPage from "./pages/SelectPage";
+import Login from "./pages/Login";
+import Books from "./pages/Books";
+import Journals from "./pages/Journals";
+import Guides from "./pages/Guides";
+import Dashboard from "./pages/Dashboard";
+import LibrarianPage from "./pages/LibrarianPage";
+import Confirmation from "./pages/ConfirmPage";
+import Unauthorized from "./pages/Unauthorized";
 import './App.css'
 import './index.css';
-import Magazines from "../pages/Magazines";
-import Dictionaries from "../pages/Dictionaries";
-import Reserves from "../pages/Reserves";
-import SearchBooks from "../pages/SearchBooks";
+import Magazines from "./pages/Magazines";
+import Dictionaries from "./pages/Dictionaries";
+import Reserves from "./pages/Reserves";
+import SearchBooks from "./pages/SearchBooks";
 import AIAssistant from "./components/AIAssistant";
 
 // Guard: only admin role can pass through

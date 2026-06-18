@@ -1,9 +1,9 @@
-import Footer from "../src/components/Footer";
-import Navbar from "../src/components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import CREDENTIALS from "../passwords.json";
+import CREDENTIALS from "/passwords.json";
 
 function Login() {
   const navigate = useNavigate();
