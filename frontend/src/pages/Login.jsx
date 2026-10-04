@@ -137,6 +137,10 @@ function Login() {
               />
             </div>
 
+            <p className="text-gray-500 text-xs leading-relaxed mb-5">
+              Demo login: User <span className="font-medium">dummy / dummy</span> · Admin <span className="font-medium">dummy / abcde</span>
+            </p>
+
             <div className="text-right mb-5">
               <a href="#" className="text-red-600 hover:underline text-sm">Forgot Password?</a>
             </div>
