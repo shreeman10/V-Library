@@ -195,6 +195,8 @@ See [`database.md`](./database.md) for the complete schema documentation, ER dia
 
 ## 🚢 Deployment
 
-- **Frontend** → Deploy to [Vercel](https://vercel.com) (SPA rewrites configured in `vercel.json`)
+- **Frontend** → Deploy to [Vercel](https://vercel.com) from the repository root. Vercel uses `npm run build`; the Vite config builds the `frontend` app into `dist`, and SPA rewrites are configured in `vercel.json`.
+- For custom demo login values, add these Vercel environment variables: `VITE_ADMIN_USERNAME`, `VITE_ADMIN_PASSWORD`, `VITE_USER_USERNAME`, and `VITE_USER_PASSWORD`. The committed `frontend/.env.example` shows the defaults.
+- Frontend environment variables are bundled into browser JavaScript, so they are suitable for demo access only, not production secrets. Use backend authentication for real credentials.
 - **Backend** → Deploy to any Node.js host (Railway, Render, etc.) with the `DATABASE_URL` environment variable set
 - **Database** → Hosted on [Neon](https://neon.tech) (serverless PostgreSQL)

@@ -2,8 +2,20 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DEFAULT_CREDENTIALS from "../../passwords.example.json";
 
-import CREDENTIALS from "/passwords.json";
+const CREDENTIALS = {
+  admin: {
+    ...DEFAULT_CREDENTIALS.admin,
+    username: import.meta.env.VITE_ADMIN_USERNAME || DEFAULT_CREDENTIALS.admin.username,
+    password: import.meta.env.VITE_ADMIN_PASSWORD || DEFAULT_CREDENTIALS.admin.password,
+  },
+  user: {
+    ...DEFAULT_CREDENTIALS.user,
+    username: import.meta.env.VITE_USER_USERNAME || DEFAULT_CREDENTIALS.user.username,
+    password: import.meta.env.VITE_USER_PASSWORD || DEFAULT_CREDENTIALS.user.password,
+  },
+};
 
 function Login() {
   const navigate = useNavigate();
